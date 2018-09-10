@@ -1,0 +1,289 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <locale.h>
+#define LIMPA system("cls")
+
+void menu();
+void itensmenu();
+void fatorial();
+void primo();
+void primos();
+int pot();
+int raiz();
+void bissexto();
+void notas();
+void media();
+void info();
+
+int main()
+{
+	
+	setlocale(LC_ALL, "Portuguese");
+	menu();
+		
+	return 0;
+}
+
+void menu()
+{
+	int o;
+	
+    do{   	
+    
+        itensmenu();
+		scanf("%d", &o); 
+		    
+        //char c = getchar();
+        //o = c-48;
+        
+        switch(o) {
+            case 0:
+                return;
+            case 1:
+            	LIMPA;
+            	printf("1: Função fatorial.\n");
+                fatorial();
+                break;
+            case 2:
+            	LIMPA;
+				printf("2: Função primo.\n");    
+				primo();
+				break;
+            case 3:
+            	LIMPA;
+                printf("3: Função primos.\n");
+                primos();
+                break;
+            case 4:
+            	LIMPA;
+				printf("4: Função potência.\n");
+				pot();
+				break;
+			case 5:
+				LIMPA;
+				printf("5: Função raiz.\n");
+				raiz();
+				break;
+			case 6:
+				LIMPA;
+				printf("6: Função bissexto.\n");
+				bissexto();
+				break;	
+			case 7:
+				LIMPA;
+				printf("7: Função notas.\n");
+				notas();
+				break;	
+			case 8:
+				LIMPA;
+				printf("8: Função média.\n");
+				media();
+				break;
+			case 9:
+				LIMPA;
+				printf("9: Informações do aluno.\n");
+				info();
+				break;		
+            default:
+                printf("Opção inválida.\n");
+                break;
+        }
+	}while(o!=0);
+
+}
+
+void itensmenu(){
+	printf("\n*-------------------------------------*");
+	printf("\n| Digite 1 para função fatorial       |");
+	printf("\n| Digite 2 para função primo.         |");
+	printf("\n| Digite 3 para função primos.        |");
+	printf("\n| Digite 4 para função potência.      |");
+	printf("\n| Digite 5 para função raiz.          |");
+	printf("\n| Digite 6 para função bissexto.      |");
+	printf("\n| Digite 7 para função notas.         |");
+	printf("\n| Digite 8 para função média.         |");
+	printf("\n| Digite 9 para informações do aluno. |");
+	printf("\n| Ou digite 0 para sair:              |");
+	printf("\n*-------------------------------------*");
+	printf("\nOpção: ");
+		
+	return;
+}
+
+void fatorial(){	
+	int i, f;
+	
+	printf("Insira um valor para gerar o fatorial: "); //pede o valor base para o fatorial.
+	scanf("%d", &i);								   //usuário informa o valor.
+	
+	for (f = 1; i > 0; i--){						   //O ciclo será feito "i" vezes.									   
+		f *= i;										   //Ex.: 1 * 5 = 5 * 4 = 20 * 3...
+	}
+	
+	printf("O valor da progressão é: %d\n", f);		   //Imprime o resultado do fatorial.
+	
+	return;
+}
+
+void primo(){
+
+int i, p;	
+int div = 0; 
+		
+	printf("Informe um número para função primo ou 0 para voltar ao menu: ");		//pede o valor base para o primo.
+	scanf("%d", &p);								   								//usuário informa o valor.	
+	if(p == 0){																	//O valor 0 é inválido para ser divido.
+		printf("0 não é um número válido.");
+		goto fim;
+	}	
+	else if (p == 1){
+		printf("%d é primo\n", p);
+		goto fim;																//Leva o usuário ao fim do laço de repetição, evitando bugs.
+	}
+	else {
+ 		for (i = 1; i <= (p/2); i++) {						  					//"i" começa com 1; "i" vai até "p" dividido por 2; incrementa "i".
+    		if (p % i == 0) {								  		    		//Se o resto de "p" divido por "i" for 0 então incrementa "div".
+     			div++;
+    		}
+		}
+	}
+ 		if (div == 1){										  					//Se só houver uma divisão com resto 0 "p" deve ser primo.
+    		printf("%d é primo\n", p);
+    	}
+ 		else{
+    		printf("%d não é primo\n", p);					   					//Se houver mais de uma ele não é primo.
+    	}
+	
+	fim:;
+	return;
+}
+
+void primos(){
+
+int i, p;
+
+do{	
+int div = 0; 
+		
+	printf("Informe um número para função primo ou 0 para sair: ");		//pede o valor base para o primo.
+	scanf("%d", &p);								   					//usuário informa o valor.	
+	LIMPA;
+	
+	if (p == 1){
+	
+	printf("%d é primo\n", p);
+	goto fim;															//Leva o usuário ao fim do laço de repetição, evitando bugs.
+	
+	}
+	else{
+	
+ 		for (i = 1; i <= (p/2); i++) {						  			//"i" começa com 1; "i" vai até "p" dividido por 2; incrementa "i".
+    		if (p % i == 0) {								  		    //Se o resto de "p" divido por "i" for 0 então incrementa "div".
+     			div++;
+    		}
+		}
+	}
+ 		if (div == 1){										  			//Se só houver uma divisão com resto 0 "p" deve ser primo.
+    		printf("%d é primo\n", p);
+    	}
+ 		else{
+    		printf("%d não é primo\n", p);					   			//Se houver mais de uma ele não é primo.
+    	}
+		fim:;
+		
+} while(p != 0);
+
+	return;
+}
+
+int pot(){
+	float f;
+	int  i;
+	double r;
+	
+	printf("Informe um decimal e um inteiro: ");
+	scanf("%f.2", &f);
+	scanf("%d", &i);
+	r = pow(f,i);
+	
+	printf("O resultado da potênciação foi: %.5e", r);
+	
+	return 0;
+}
+
+int raiz(){
+	float f;
+	int  i;
+	double r;
+	
+	printf("Informe um decimal e um inteiro: ");
+	scanf("%f.2", &f);
+	scanf("%d", &i);
+	r = sqrt(f/i);
+	
+	printf("O resultado da potênciação foi: %.5e", r);
+	return 0;	
+}
+
+void bissexto(){
+	int ano;
+	
+	printf("Informe um ano e verifique se o mesmo é bissexto: ");
+	scanf("%d", &ano);
+	
+	if(ano % 4 == 0){
+		printf("É bissexto.");
+	}
+	else{
+		printf("Não é bissexto.");
+	}
+	
+	return;		
+}
+
+void notas(){
+	float n1, n2, med;
+	
+	printf("Informe duas notas válidas para que a média seja gerada: ");
+	scanf("%f %f", &n1, &n2);
+	
+	if (n1 >= 0.0 && n1 <=10.0){
+		if (n2 >= 0.0 && n2 <=10.0){
+			
+			(med = (n1 + n2)/2);
+			printf("A média foi: %f", med);
+		}
+	}
+	else{
+		printf("Notas inválidas.");
+	}
+	
+	return;
+}
+
+void media(){
+	float p1, p2, p3, medp;
+	printf("Informe as notas das provas: ");
+	scanf("%f %f %f", &p1, &p2, &p3);
+	
+	medp = (p1 + p2 + (p3 *2))/4;
+	printf("%.2f", medp);
+	
+	if (medp >= 60){
+		printf("\nAluno aprovado!");
+	}
+	else{
+		printf("\nAluno reprovado!");
+	}
+	
+	return;
+}
+
+void info(){
+	int mat = 1810023202;
+	printf("Lucas Alves de Albuquerque e Macêdo.\n");
+	printf("Matrícula: %X\n", mat);
+		
+	return;
+}
